@@ -1,1 +1,3 @@
 # RegistrationPage
+
+using Ajax
