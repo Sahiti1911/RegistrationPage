@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="reg2.css">
+</head>
+<body>
+    <h1>Registration Page</h1>
+    <form id="registrationForm" action="reg2.php" method="POST" enctype="multipart/form-data">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <label for="profile-image">Profile Image:</label>
+        <input type="file" id="profile-image" name="profileImage" accept="image/*">
+        <label for="audio-sample">Audio Sample</label>
+        <input type="file" id="audio-sample" name="audioSample" accept="audio/*" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#registrationForm").submit(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type: "POST",
+                    url: "reg2.php",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        // Redirect to the next page with the registration data
+                        window.location.href = 'reg2_1.php?data=' + encodeURIComponent(response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
